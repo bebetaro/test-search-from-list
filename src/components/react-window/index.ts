@@ -1,0 +1,1 @@
+export { ReactWindow } from './component'

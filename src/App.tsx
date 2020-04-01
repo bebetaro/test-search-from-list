@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback, } from 'react';
+import { Normal } from './components/normal'
+import { Pagination } from './components/pagination'
+import { ReactWindow } from './components/react-window'
+import styles from './app.module.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App: React.FC = () => {
+  const [tableType, setTableType] = useState<'normal' | 'page' | 'window' | 'none'>('none')
+  const onChangeTableType = useCallback((type: 'normal' | 'page' | 'window' | 'none') => () => {
+    setTableType(type)
+  }, [])
+
+  const showTable = (type: 'normal' | 'page' | 'window' | 'none') => {
+    switch (type) {
+      case 'normal':
+        return <Normal />
+      case 'page':
+        return <Pagination />
+      case 'window':
+        return <ReactWindow />
+      default:
+        return <div></div>
+    }
+  }
+
+  return <div className={styles.container}>
+    <div className={styles.buttons}>
+      <button className={styles.button} type={'button'} onClick={onChangeTableType('normal')}>Normal*Warning*</button>
+      <button className={styles.button} type={'button'} onClick={onChangeTableType('page')}>Pagination</button>
+      <button className={styles.button} type={'button'} onClick={onChangeTableType('window')}>React Window</button>
     </div>
-  );
+    <div className={styles.list}>
+      {showTable(tableType)}
+    </div>
+  </div>
 }
 
 export default App;
