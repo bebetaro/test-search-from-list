@@ -26,3 +26,7 @@ export const VirtualList: React.FC<Props> = (props) => {
     </div>
   )
 }
+
+VirtualList.defaultProps = {
+  names: []
+}

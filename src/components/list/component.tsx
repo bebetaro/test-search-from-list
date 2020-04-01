@@ -16,3 +16,7 @@ export const List: React.FC<Props> = (props) => {
 
   )
 }
+
+List.defaultProps = {
+  names: []
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledInput } from './style'
+import styles from './style.module.css'
 
 type Props = {
   value: string
@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const Input: React.FC<Props> = props => {
-  return <StyledInput type='text' value={props.value} onChange={props.onChange} />
+  return <input className={styles.search} type='text' value={props.value} onChange={props.onChange} />
 }
 
 Input.defaultProps = {
